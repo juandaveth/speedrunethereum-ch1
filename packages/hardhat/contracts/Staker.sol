@@ -29,9 +29,9 @@ contract Staker {
   modifier deadlinePassed(bool requireDeadlinePassed) {
     uint256 timeRemaining = timeLeft();
     if (requireDeadlinePassed) {
-      require(timeRemaining <= 0, "El deadline no ha pasado todavía");
+      require(timeRemaining <= 0, "El deadline no ha pasado todavia");
     } else {
-      require(timeRemaining > 0, "El deadline ya pasó");
+      require(timeRemaining > 0, "El deadline ya paso");
     }
     _;
   }

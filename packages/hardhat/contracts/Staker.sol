@@ -25,6 +25,17 @@ contract Staker {
     _;
   }
 
+  // 3.4 Crear otro modifier que verifique que el deadline no se ha cumplido
+  modifier deadlinePassed(bool requireDeadlinePassed) {
+    uint256 timeRemaining = timeLeft();
+    if (requireDeadlinePassed) {
+      require(timeRemaining <= 0, "Deadline has not been passed yet");
+    } else {
+      require(timeRemaining > 0, "Deadline is already passed");
+    }
+    _;
+  }
+
   constructor(address exampleExternalContractAddress) {
       exampleExternalContract = ExampleExternalContract(exampleExternalContractAddress);
   }
@@ -36,19 +47,8 @@ contract Staker {
     // 2.3.2 Emitir el evento que notifica a la blockchain que un sender a enviado una cantidad
     emit Stake(msg.sender, msg.value);
   }
-  // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
-  // ( Make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
-  //function stake() public payable {
-    // En esta función quiero hacer una sumatoria del valor stakeado en cada transacción
-    // const totalStaked 
-    // msg.value += msg.value;
-  //}
 
   // After some `deadline` allow anyone to call an `execute()` function
-
-  //function execute() public payable {
-    // Cuando se ejecute esta función, tomaré el valor del msg.value que tomaré de la función stake.
-  //}
 
   // If the deadline has passed and the threshold is met, it should call `exampleExternalContract.complete{value: address(this).balance}()`
 

@@ -19,6 +19,13 @@ contract Staker {
       exampleExternalContract = ExampleExternalContract(exampleExternalContractAddress);
   }
 
+  // 2.3 Implementar la función stake() como paybale para actualizar el balance
+  function stake() public payable {
+    // 2.3.1 Actualizar el balance
+    balances[msg.sender] += msg.value;
+    // 2.3.2 Emitir el evento que notifica a la blockchain que un sender a enviado una cantidad
+    emit Stake(msg.sender, msg.value);
+  }
   // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
   // ( Make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
   //function stake() public payable {

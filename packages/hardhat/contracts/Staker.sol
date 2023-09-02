@@ -12,6 +12,9 @@ contract Staker {
   mapping(address => uint256) public balances;
 	uint256 public threshold = 1 ether;
 
+  // 2.2 Declarar el evento Stake() que registrará dos cosas: address y amount
+    event Stake(address indexed sender, uint256 amount);
+
   constructor(address exampleExternalContractAddress) {
       exampleExternalContract = ExampleExternalContract(exampleExternalContractAddress);
   }

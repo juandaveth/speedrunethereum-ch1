@@ -12,6 +12,9 @@ contract Staker {
   mapping(address => uint256) public balances;
 	uint256 public threshold = 1 ether;
 
+  // 3.1 Declarar un deadline de 30 segundos después de desplegado el contrato.
+    uint256 public deadline = block.timestamp + 30 seconds;
+    
   // 2.2 Declarar el evento Stake() que registrará dos cosas: address y amount
     event Stake(address indexed sender, uint256 amount);
 

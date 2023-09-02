@@ -18,6 +18,13 @@ contract Staker {
   // 2.2 Declarar el evento Stake() que registrará dos cosas: address y amount
     event Stake(address indexed sender, uint256 amount);
 
+  // 3.3 Crear un modifier que la Vaca no esté completa
+  modifier stakeNotCompleted() {
+    bool completed = exampleExternalContract.completed();
+    require(!completed, "staking process already completed");
+    _;
+  }
+
   constructor(address exampleExternalContractAddress) {
       exampleExternalContract = ExampleExternalContract(exampleExternalContractAddress);
   }

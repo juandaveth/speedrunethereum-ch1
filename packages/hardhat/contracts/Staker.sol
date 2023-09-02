@@ -14,7 +14,7 @@ contract Staker {
 
   // 3.1 Declarar un deadline de 30 segundos después de desplegado el contrato.
     uint256 public deadline = block.timestamp + 30 seconds;
-    
+
   // 2.2 Declarar el evento Stake() que registrará dos cosas: address y amount
     event Stake(address indexed sender, uint256 amount);
 
@@ -50,7 +50,14 @@ contract Staker {
 
 
   // Add a `timeLeft()` view function that returns the time left before the deadline for the frontend
-
+  // 3.2 Crear función que permite contabilizar el tiempo restante.
+  function timeLeft() public view returns (uint256 timeleft) {
+    if( block.timestamp >= deadline ) {
+      return 0;
+    } else {
+      return deadline - block.timestamp;
+    }
+  }
 
   // Add the `receive()` special function that receives eth and calls stake()
 

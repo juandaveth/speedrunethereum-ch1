@@ -8,6 +8,10 @@ contract Staker {
 
   ExampleExternalContract public exampleExternalContract;
 
+  // 2.1 Declarar el mapping de los balances y el threshold que debe lograr la 🐮 Vaca.
+  mapping(address => uint256) public balances;
+	uint256 public threshold = 1 ether;
+
   constructor(address exampleExternalContractAddress) {
       exampleExternalContract = ExampleExternalContract(exampleExternalContractAddress);
   }
